@@ -18,8 +18,6 @@ function insertarPrestamo() {
         tipoPlanPagos: tipoPlanPagos
     };
 
-    //console.log(params);
-
     postAjax(method, ruta_prestamos + '?accion=insertarPrestamo', params, '');
 }
 
@@ -37,9 +35,31 @@ function actualizarPrestamo(idPrestamo) {
         tipoPlanPagos: tipoPlanPagos
     };
 
-    console.log(params);
-
-    postAjax(method, ruta_prestamos + '?accion=actualizarPrestamo', params, '');
+    postAjax(method, ruta_prestamos + '?accion=actualizarPrestamo', params, '')
+    .then(function(respuestaHtml) {
+        // Hacer algo con la respuesta HTML en caso de éxito
+        cerrar_modals();
+        document.querySelector('.modal-backdrop').remove();
+        document.querySelector('#div_modal').innerHTML = `
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h5 class='modal-title' id='actualizarPrestamo'>Updated</h5>
+                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+                <div class='modal-body'>
+                    ${respuestaHtml}
+                </div>
+                <div class='modal-footer'>
+                </div>
+            </div>
+        `;
+    })
+    .catch(function(error) {
+        // Manejar el error en caso de fallo
+        console.error('Error:', error);
+    });
 }
 
 function crearNuevoPrestamo() {
@@ -80,5 +100,17 @@ function eliminarPrestamo(id_Prestamo) {
     };
     
     postAjax(method,ruta_prestamos,params,selector_dest);
+}
+
+function eliminarPrestamoConfirmado(id_prestamo) {
+    //get data with ajax
+    // Crear el cuerpo de la solicitud
+    var selector_dest = ".result-delete";
+
+    var params = {
+        id_prestamo: id_prestamo
+    };
+    
+    postAjax(method,ruta_prestamos + '?accion=eliminarPrestamoConfirmado',params,selector_dest);
 }
 

@@ -144,9 +144,10 @@ class HtmlManager {
         $html = '
         <div id="agregarPrestamoModal" class="modal fade" role="dialog"></div>
         <div id="verMasModal" class="modal fade" role="dialog"></div>
-        <div id="generarModalEditar" class="modal fade" role="dialog"></div>
+        <div id="generarModalEditar" tabindex="-1" class="modal fade" role="dialog"></div>
         <div id="registrarPagoModal" class="modal fade" role="dialog"></div>
         <div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true"></div>
+        <div id="div_modal" class="modal fade" role="dialog"></div>
         ';
         return $html;
     }

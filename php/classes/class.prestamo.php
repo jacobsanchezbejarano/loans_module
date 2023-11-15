@@ -127,12 +127,25 @@ public function insertarPrestamo($codPers, $fechaInicio, $deudaInicial, $montoCu
     }
 
     // Método para eliminar un préstamo
-    public function eliminarPrestamo($idPrestamo) {
-        $sql = "DELETE FROM prestamos WHERE id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idPrestamo);
-        $stmt->execute();
-        $stmt->close();
+    public function eliminarPrestamo() {
+
+        $conn = $this->conectar();
+        $idPrestamo = $this->getId();
+
+        // Eliminar pagos asociados
+        $sqlEliminarPagos = "DELETE FROM pagos WHERE prestamo_id = :prestamo_id";
+        $stmtEliminarPagos = $conn->prepare($sqlEliminarPagos);
+        $stmtEliminarPagos->bindParam(':prestamo_id', $idPrestamo, PDO::PARAM_INT);
+        $stmtEliminarPagos->execute();
+
+        // Eliminar el préstamo
+        $sqlEliminarPrestamo = "DELETE FROM prestamos WHERE prestamo_id = :prestamo_id";
+        $stmtEliminarPrestamo = $conn->prepare($sqlEliminarPrestamo);
+        $stmtEliminarPrestamo->bindParam(':prestamo_id', $idPrestamo, PDO::PARAM_INT);
+        $stmtEliminarPrestamo->execute();
+
+        $this->desconectar();
+
     }
 
     // Método para actualizar un préstamo

@@ -62,8 +62,18 @@ if($valid_request) {
 
         $Prestamo->actualizarPrestamoEnBD();
 
-        $_SESSION['mensaje'] = 'Loan updated successfully';
+        echo 'Loan updated successfully';
 
+    }
+
+    if($accion == 'eliminarPrestamoConfirmado') {
+        $Prestamo = new Prestamo();
+        $id_prestamo = $_POST['id_prestamo'];
+        $Prestamo->cargarDatosPrestamo($id_prestamo);
+
+        $Prestamo->eliminarPrestamo();
+
+        $_SESSION['mensaje'] = 'Loan deleted successfully';
     }
     
 }
@@ -178,7 +188,7 @@ function drawModalEditarPrestamo($id_prestamo) {
                         <!-- Agrega otros campos según sea necesario -->
     
                         <!-- Botón para enviar el formulario -->
-                        <button type="button" onclick="actualizarPrestamo('.$Prestamo->getId().')" class="btn btn-primary">Save Changes</button>
+                        <button type="button" onclick="actualizarPrestamo('.$Prestamo->getId().')" class="btn btn-primary" data-toggle="modal" data-target="#div_modal">Save Changes</button>
                     </form>
     
                 </div>
@@ -197,15 +207,15 @@ function drawModalEditarPrestamo($id_prestamo) {
 function eliminarPrestamo($prestamo_id) {
     echo "
     <div class='modal-dialog' role='document'>
-        <div class='modal-content'>
+        <div class='modal-content result-delete'>
             <div class='modal-header'>
-                <h5 class='modal-title' id='eliminarModalLabel'>Confirmar Eliminación</h5>
+                <h5 class='modal-title' id='eliminarModalLabel'>Confirmation</h5>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button>
             </div>
             <div class='modal-body'>
-                ¿Estás seguro de que deseas eliminar este préstamo?
+                Are you sure to delete this loan?
             </div>
             <div class='modal-footer'>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>
