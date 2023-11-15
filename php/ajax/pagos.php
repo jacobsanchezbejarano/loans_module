@@ -21,8 +21,27 @@ if($valid_request) {
     }
 
     if(isset($_POST['modalRegistrarPago'])) {
-        modalRegistrarPago();
+        modalRegistrarPago($_POST['id_prestamo']);
     }
+
+    $accion = @$_GET['accion'];
+
+    if ($accion == 'registrarPago') {
+        // Obtener los datos del formulario o la solicitud
+        $id_prestamo = $_POST['id_prestamo'] ?? '';
+        $fechaPago = $_POST['fechaPago'] ?? '';
+        $montoPagado = $_POST['montoPagado'] ?? '';
+        $tipoTransaccion = $_POST['tipoTransaccion'] ?? '';
+    
+        // Llamar al método insertarPago
+        // Asegúrate de tener la lógica adecuada en el método insertarPago en tu clase Prestamo
+        $Pago = new Pago($id_prestamo, $fechaPago, $montoPagado, $tipoTransaccion, '');
+        $Pago->insertarPago();
+        
+        // Puedes enviar una respuesta al cliente si es necesario
+        echo 'Payment recorded successfully';
+    }
+    
 }
 
 function drawModal($id_prestamo) {
@@ -88,7 +107,7 @@ function drawModal($id_prestamo) {
     echo $html;
 }
 
-function modalRegistrarPago() {
+function modalRegistrarPago($id_prestamo) {
     $html = '
     <div class="modal-dialog">
     <!-- Contenido del modal -->
@@ -116,7 +135,7 @@ function modalRegistrarPago() {
             </select>
             </div>
             <!-- Otros campos según sea necesario -->
-            <button type="button" class="btn btn-success" onclick="registrarPago()">Save Payment</button>
+            <button type="button" class="btn btn-success" onclick="registrarPago('.$id_prestamo.')">Save Payment</button>
         </form>
         </div>
         <div class="modal-footer">
