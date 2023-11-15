@@ -18,7 +18,31 @@ function insertarPrestamo() {
         tipoPlanPagos: tipoPlanPagos
     };
 
-    postAjax(method, ruta_prestamos + '?accion=insertarPrestamo', params, '');
+    postAjax(method, ruta_prestamos + '?accion=insertarPrestamo', params, '').then(function(respuestaHtml) {
+        // Hacer algo con la respuesta HTML en caso de éxito
+        cerrar_modals();
+        document.querySelector('.modal-backdrop').remove();
+        document.querySelector('#div_modal').innerHTML = `
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h5 class='modal-title' id='actualizarPrestamo'>Updated</h5>
+                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+                <div class='modal-body'>
+                    ${respuestaHtml}
+                </div>
+                <div class='modal-footer'>
+                </div>
+            </div>
+        `;
+    })
+    .then(function() {
+        //setTimeout(function() {
+            location.reload();
+        // }, 1000);
+    });
 }
 
 function actualizarPrestamo(idPrestamo) {
@@ -55,6 +79,11 @@ function actualizarPrestamo(idPrestamo) {
                 </div>
             </div>
         `;
+    })
+    .then(function() {
+        //setTimeout(function() {
+            location.reload();
+        // }, 1000);
     })
     .catch(function(error) {
         // Manejar el error en caso de fallo
@@ -111,6 +140,34 @@ function eliminarPrestamoConfirmado(id_prestamo) {
         id_prestamo: id_prestamo
     };
     
-    postAjax(method,ruta_prestamos + '?accion=eliminarPrestamoConfirmado',params,selector_dest);
+    postAjax(method,ruta_prestamos + '?accion=eliminarPrestamoConfirmado',params,selector_dest).then(function(respuestaHtml) {
+        // Hacer algo con la respuesta HTML en caso de éxito
+        cerrar_modals();
+        document.querySelector('.modal-backdrop').remove();
+        document.querySelector('#div_modal').innerHTML = `
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h5 class='modal-title' id='prestamoEliminado'>Updated</h5>
+                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+                <div class='modal-body'>
+                    ${respuestaHtml}
+                </div>
+                <div class='modal-footer'>
+                </div>
+            </div>
+        `;
+    })
+    .then(function() {
+        //setTimeout(function() {
+            location.reload();
+        //}, 1000);
+    })
+    .catch(function(error) {
+        // Manejar el error en caso de fallo
+        console.error('Error:', error);
+    });
 }
 

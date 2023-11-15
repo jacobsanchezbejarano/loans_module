@@ -40,7 +40,7 @@ if($valid_request) {
         $Prestamo->insertarPrestamo($codPers, $fechaInicio, $deudaInicial, $montoCuota, $tipoPlanPagos);
 
         // Puedes enviar una respuesta al cliente si es necesario
-        $_SESSION['mensaje'] = 'Loan inserted successfully';
+        echo 'Loan inserted successfully';
     }
 
 
@@ -73,7 +73,7 @@ if($valid_request) {
 
         $Prestamo->eliminarPrestamo();
 
-        $_SESSION['mensaje'] = 'Loan deleted successfully';
+        echo 'Loan deleted successfully';
     }
     
 }
@@ -119,7 +119,7 @@ function drawModalNuevoPrestamo() {
                         <label for="tipoPlanPagos">Tipo de Plan de Pagos:</label>
                         <select class="form-control" id="tipoPlanPagos">
                             <option value="Weekly">Semanal</option>
-                            <option value="Biweekly Payment">Biweekly Payment</option>
+                            <option value="Biweekly">Biweekly</option>
                             <option value="Monthly">Monthly</option>
                         </select>
                     </div>
