@@ -69,7 +69,6 @@ function drawModal($id_prestamo) {
                 <th>Payment Cod.</th>
                 <th>Amount</th>
                 <th>Payment Type</th>
-                <th>Actions</th>
             </tr>
             </thead>
             <tbody>';
@@ -84,7 +83,6 @@ function drawModal($id_prestamo) {
                 <td>' . $pago->getCodMaster() . '</td>
                 <td contenteditable="true">' . $pago->getMontoPagado() . '</td>
                 <td>' . $pago->getTipoTransaccion() . '</td>
-                <td></td>
             </tr>';
     }
     $empty = "";
