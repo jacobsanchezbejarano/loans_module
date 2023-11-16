@@ -39,7 +39,7 @@ class Prestamo {
         // Configura las propiedades con los valores obtenidos
         $this->setId($data['prestamo_id']);
         $this->setCodPers($data['cod_pers']);
-        $this->setNombreStaff($data['name']);
+        $this->setNombreStaff($data['nom_pers']);
         $this->setDeuda($data['deuda']);
         $this->setFechaInicio($data['fecha_inicio']);
         $this->setDeudaInicial($data['deuda_inicial']);

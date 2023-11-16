@@ -36,7 +36,7 @@ class Staffs {
             // Obtener los resultados
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Construir un objeto Staff con los datos de la consulta
-                $staff = new Staff($row['cod_pers'], $row['name']);
+                $staff = new Staff($row['cod_pers'], $row['nom_pers']);
 
                 // Agregar el objeto Staff a la colección
                 $this->agregarStaff($staff);
