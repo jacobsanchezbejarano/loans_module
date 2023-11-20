@@ -21,7 +21,9 @@ function insertarPrestamo() {
     postAjax(method, ruta_prestamos + '?accion=insertarPrestamo', params, '').then(function(respuestaHtml) {
         // Hacer algo con la respuesta HTML en caso de éxito
         cerrar_modals();
-        document.querySelector('.modal-backdrop').remove();
+        document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+            backdrop.remove();
+        });
         document.querySelector('#div_modal').innerHTML = `
             <div class='modal-content'>
                 <div class='modal-header'>
@@ -63,7 +65,9 @@ function actualizarPrestamo(idPrestamo) {
     .then(function(respuestaHtml) {
         // Hacer algo con la respuesta HTML en caso de éxito
         cerrar_modals();
-        document.querySelector('.modal-backdrop').remove();
+        document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+            backdrop.remove();
+        });
         document.querySelector('#div_modal').innerHTML = `
             <div class='modal-content'>
                 <div class='modal-header'>
@@ -143,7 +147,9 @@ function eliminarPrestamoConfirmado(id_prestamo) {
     postAjax(method,ruta_prestamos + '?accion=eliminarPrestamoConfirmado',params,selector_dest).then(function(respuestaHtml) {
         // Hacer algo con la respuesta HTML en caso de éxito
         cerrar_modals();
-        document.querySelector('.modal-backdrop').remove();
+        document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+            backdrop.remove();
+        });
         document.querySelector('#div_modal').innerHTML = `
             <div class='modal-content'>
                 <div class='modal-header'>
