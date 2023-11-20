@@ -118,9 +118,9 @@ class HtmlManager {
                     <td>{$prestamo->getTipoPlanPagos()}</td>
                     <td>
                     <!-- Botón para Ver Más con llamada a la función verPagosDeuda -->
-                        <button class='btn btn-info btn-sm' onclick='verPagosDeuda(".$prestamo->getId().")' data-toggle='modal' data-target='#verMasModal'>View Payments</button>                 
-                        <button class='btn btn-warning btn-sm'onclick='editarPrestamo(".$prestamo->getId().")' data-toggle='modal' data-target='#generarModalEditar'>Edit Loan</button>
-                        <button class='btn btn-success btn-sm'onclick='modalRegistrarPago(".$prestamo->getId().")' data-toggle='modal' data-target='#registrarPagoModal'>Record Payment</button>
+                        <button class='btn btn-info btn-sm' onclick='verPagosDeuda(".$prestamo->getId().")' data-toggle='modal' data-target='#verMasModal'><i class='fa fa-eye'></i> </button>                 
+                        <button class='btn btn-warning btn-sm'onclick='editarPrestamo(".$prestamo->getId().")' data-toggle='modal' data-target='#generarModalEditar'><i class='fa fa-pencil'></i></button>
+                        <button class='btn btn-success btn-sm'onclick='modalRegistrarPago(".$prestamo->getId().")' data-toggle='modal' data-target='#registrarPagoModal'><i class='fas fa-money-check'></i></button>
                         <button class='btn btn-danger btn-sm' onclick='eliminarPrestamo(".$prestamo->getId().")' data-toggle='modal' data-target='#eliminarModal'><i class='fas fa-trash-alt'></i></button>
                     </td>
                 </tr>

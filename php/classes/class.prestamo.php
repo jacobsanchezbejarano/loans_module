@@ -63,7 +63,7 @@ class Prestamo {
         $query = "
                 SELECT * FROM prestamos pr
                 LEFT JOIN personal pe ON pr.cod_pers = pe.cod_pers  
-                WHERE prestamo_id = :prestamo_id";
+                WHERE pr.prestamo_id = :prestamo_id";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':prestamo_id', $prestamo_id, PDO::PARAM_INT);
         $stmt->execute();
