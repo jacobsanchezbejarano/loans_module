@@ -46,13 +46,7 @@ class Prestamos {
             if ($stmt->rowCount() > 0) {
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $prestamo = new Prestamo();
-                    $prestamo->setId($row['prestamo_id']);
-                    $prestamo->setNombreStaff($row['nom_pers']);
-                    $prestamo->setFechaInicio($row['fecha_inicio']);
-                    $prestamo->setDeudaInicial($row['deuda_inicial']);
-                    $prestamo->setSumatoriaPagos($row['sumatoria_pagos']);
-                    $prestamo->setSaldoPendiente($row['saldo_pendiente']);
-                    $prestamo->setTipoPlanPagos($row['tipo_plan_pagos']);
+                    $prestamo->cargarDatosPrestamo($row['prestamo_id']);
     
                     $prestamos[] = $prestamo;
                 }

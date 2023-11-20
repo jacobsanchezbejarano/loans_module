@@ -43,12 +43,17 @@ class Prestamo {
         $this->setDeuda($data['deuda']);
         $this->setFechaInicio($data['fecha_inicio']);
         $this->setDeudaInicial($data['deuda_inicial']);
-        $this->setSumatoriaPagos($data['sumatoria_pagos']);
-        $this->setSaldoPendiente($data['saldo_pendiente']);
+        
         $this->setTipoPlanPagos($data['tipo_plan_pagos']);
         $this->setMontoCuota($data['monto_cuota']);
         $this->setPeriodoCuotaNumeric($data['periodo_cuota_numeric']);
         $this->setPeriodoCuotaMedida($data['periodo_cuota_medida']);
+
+        // Calcula la sumatoria de pagos acumulados
+        $this->calcularSumatoriaPagos();
+
+        // Calcula el saldo pendiente restando la deuda inicial de la sumatoria de pagos
+        $this->calcularSaldoPendiente();
     }
 
     private function obtenerInformacionPrestamoDesdeBD($prestamo_id) {
@@ -68,6 +73,27 @@ class Prestamo {
         $conn = $this->desconectar();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    private function calcularSumatoriaPagos() {
+        $conn = $this->conectar();
+    
+        // Consulta para obtener la sumatoria de pagos asociados a un préstamo
+        $query = "SELECT SUM(monto_pagado) AS total_pagos FROM pagos WHERE prestamo_id = :prestamo_id";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':prestamo_id', $this->prestamo_id, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        $this->setSumatoriaPagos($result['total_pagos']);
+
+        $this->desconectar();
+    }
+    
+    private function calcularSaldoPendiente() {
+        
+        $this->setSaldoPendiente(($this->deuda_inicial - $this->sumatoria_pagos));
     }
 
 // Método para insertar un nuevo préstamo
