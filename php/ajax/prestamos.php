@@ -92,8 +92,8 @@ function drawModalNuevoPrestamo() {
         <!-- Contenido del modal -->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Add New Loan</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <!-- Aquí coloca los campos del formulario, por ejemplo, un campo de texto para el nombre del staff y un campo de selección (select) para el código del personal (cod_pers) -->
@@ -156,8 +156,8 @@ function drawModalEditarPrestamo($id_prestamo) {
             <!-- Contenido del modal -->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Edit Loan</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <!-- Aquí coloca los campos del formulario, por ejemplo, un campo de texto para el nombre del staff y un campo de selección (select) para el código del personal (cod_pers) -->

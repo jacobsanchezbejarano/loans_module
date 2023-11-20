@@ -57,8 +57,8 @@ function drawModal($id_prestamo) {
     <!-- Contenido del modal -->
     <div class="modal-content">
         <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Payment History</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
         <!-- Tabla de Pagos Realizados -->
@@ -111,8 +111,8 @@ function modalRegistrarPago($id_prestamo) {
     <!-- Contenido del modal -->
     <div class="modal-content">
         <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Record Payment</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
         <!-- Formulario para registrar pagos -->
